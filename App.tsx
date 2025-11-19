@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { AppProvider, useAppContext } from './context/AppContext';
 import Header from './components/Header';
@@ -31,18 +32,10 @@ const AppContent: React.FC = () => {
         }
     };
 
-    // Increased margin to accommodate larger header font sizes
-    const mainContentMargin = currentStep === 0 ? '0px' : '200px';
-    const mainContentPadding = currentStep === 0 ? '0px' : '40px';
-
-
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen font-sans">
             <Header />
-            <main 
-                className="container mx-auto px-4 py-6 flex-grow transition-all duration-300" 
-                style={{ marginTop: mainContentMargin, paddingBottom: mainContentPadding }}
-            >
+            <main className="container mx-auto px-4 pb-12 flex-grow w-full max-w-7xl">
                 <div className="step-container">
                     {renderStep()}
                 </div>
@@ -51,6 +44,14 @@ const AppContent: React.FC = () => {
             <style>{`
                 .step-container {
                     animation: fadeInStep 0.5s ease-in-out;
+                }
+                /* Esconde a barra de rolagem mas permite rolar */
+                .scrollbar-hide::-webkit-scrollbar {
+                    display: none;
+                }
+                .scrollbar-hide {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
                 }
                 @keyframes fadeInStep {
                     from {
